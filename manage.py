@@ -7,7 +7,6 @@ import sys
 if os.path.exists("env.py"):
     import env
 
-print(os.getenv("SECRET_KEY"))
 
 def main():
     """Run administrative tasks."""
