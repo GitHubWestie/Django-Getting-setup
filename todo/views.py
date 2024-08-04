@@ -22,3 +22,7 @@ def get_todo_list(request):
     }
     # Makes context dictionary available to html template
     return render(request, "todo/todo_list.html", context)
+
+
+def add_item(request):
+    return render(request, "todo/add_item.html")
