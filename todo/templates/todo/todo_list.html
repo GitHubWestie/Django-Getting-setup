@@ -16,10 +16,11 @@
                     <td>{{ item.done }}</td>
                 {% endif %}
             </tr>
-            <!-- If there are no tasks to complete will render html below {% empty %} -->
-            {% empty %}
+        {% empty %}
             <tr>
-                <td>You have nothing to do!</td>
+                <td>
+                    You have nothing to do!
+                </td>
             </tr>
         {% endfor %}
     </table>
