@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import item
+from .forms import item_form
 
 # Create your views here.
 
@@ -26,20 +27,13 @@ def get_todo_list(request):
 
 
 def add_item(request):
-    """ Gets data submitted from form
-
-    If request method is GET (i.e if page is being loaded) then the return
-    render at the end of the function will run. If the form is submitted then
-    the if statement will be entered as this will be a POST request. The name
-    and done variables are then assigned values from the form based on the 
-    name attribute from the form field. These variables are then assigned to
-    the name and done fields in the model and sent to the database using the
-    objects manager built into Django
-    """
     if request.method == 'POST':
-        name = request.POST.get('item_name')
-        done = 'done' in request.POST
-        item.objects.create(name=name, done=done)
-
-        return redirect(get_todo_list)
-    return render(request, "todo/add_item.html")
+        form = item_form(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect(get_todo_list)
+    form = item_form()
+    context = {
+        'form': form
+    }
+    return render(request, "todo/add_item.html", context)
