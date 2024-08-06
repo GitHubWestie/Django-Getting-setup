@@ -1,5 +1,5 @@
-from django.shortcuts import render, redirect
-from .models import item
+from django.shortcuts import render, redirect, get_object_or_404
+from .models import Item
 from .forms import item_form
 
 # Create your views here.
@@ -17,7 +17,7 @@ def get_todo_list(request):
     """
 
     # Creates item variable with .objects.all()
-    items = item.objects.all()
+    items = Item.objects.all()
     # Creates dictionary using items variable
     context = {
         'items':items
@@ -37,3 +37,17 @@ def add_item(request):
         'form': form
     }
     return render(request, "todo/add_item.html", context)
+
+
+def edit_item(request, item_id):
+    item = get_object_or_404(Item, id=item_id)
+    if request.method == 'POST':
+        form = item_form(request.POST, instance=item)
+        if form.is_valid():
+            form.save()
+            return redirect(get_todo_list)
+    form = item_form(instance=item)
+    context = {
+        'form': form
+    }
+    return render(request, 'todo/edit_item.html', context)

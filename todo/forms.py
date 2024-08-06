@@ -1,7 +1,7 @@
 # imports the django forms library
 from django import forms
 # imports my item model from models.py
-from .models import item
+from .models import Item
 
 
 class item_form(forms.ModelForm):
@@ -15,5 +15,5 @@ class item_form(forms.ModelForm):
     from that model.
     """
     class Meta:
-        model = item
+        model = Item
         fields = ['name', 'done']
