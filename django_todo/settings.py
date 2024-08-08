@@ -30,7 +30,9 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['8000-githubwesti-djangogetti-rrl92bzz4lh.ws.codeinstitute-ide.net']
+ALLOWED_HOSTS = [
+    '8000-githubwesti-djangogetti-rrl92bzz4lh.ws.codeinstitute-ide.net',
+    'my-django-db-845155cb9650.herokuapp.com']
 
 
 # Application definition
